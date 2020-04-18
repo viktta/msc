@@ -1,0 +1,33 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  grid-gap: 10px;
+}
+
+.main {
+  grid-column: 3 / 3;
+  grid-row: 3 / 59;
+}
+
+.footer {
+  grid-column: 3 / 3;
+  grid-row: 79 / 79;
+}
+
+.header {
+  position: relative;
+  right: 120px;
+  grid-row: 1 / 1;
+  grid-column: 1 / 1;
+}
+
+.msc {
+  grid-column: 3 / 4;
+  grid-row: 1 / 1;
+}
+
+.grid-container > div {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
