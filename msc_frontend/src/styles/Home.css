@@ -6,7 +6,7 @@
 
 .main {
   grid-column: 3 / 3;
-  grid-row: 3 / 59;
+  grid-row: 3 / 7;
 }
 
 .footer {
@@ -16,7 +16,6 @@
 
 .header {
   position: relative;
-  right: 120px;
   grid-row: 1 / 1;
   grid-column: 1 / 1;
 }
@@ -24,6 +23,8 @@
 .msc {
   grid-column: 3 / 4;
   grid-row: 1 / 1;
+  text-decoration: underline;
+  color: teal;
 }
 
 .grid-container > div {

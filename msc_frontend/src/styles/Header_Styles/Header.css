@@ -28,7 +28,7 @@
   display: block;
 }
 
-.Dropdown-content a:hover {
+.Dropdown-content a:hover link:hover {
   background-color: #f1f1f1;
 }
 
