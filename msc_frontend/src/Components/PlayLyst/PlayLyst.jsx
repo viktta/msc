@@ -8,23 +8,11 @@ class PlayLyst extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      createplaylist: {
-        name: "",
-        public: false,
-      },
+      
     };
   }
 
-  createPlaylist() {
-    spotifyApi.createPlaylist().then((response) => {
-      this.setState({
-        createplaylist: {
-          name: response.name,
-          public: response.public,
-        },
-      });
-    });
-  }
+  
 
   render() {
     return (
