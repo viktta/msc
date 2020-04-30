@@ -13,9 +13,9 @@ var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 
-var client_id = 'Your client id'; // Your client id
-var client_secret = 'Your secret'; // Your secret
-var redirect_uri = 'Your redirect uri'; // Your redirect uri
+var client_id = 'a75233744bd24fac8c4bc37c00046eac'; // Your client id
+var client_secret = '4642d18becce454f83e441569186154a'; // Your secret
+var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 
 /**
  * Generates a random string containing numbers and letters
@@ -67,7 +67,7 @@ app.get('/callback', function(req, res) {
   var storedState = req.cookies ? req.cookies[stateKey] : null;
 
   if (state === null || state !== storedState) {
-    res.redirect('localhost:3000/playlist#' +
+    res.redirect('http://localhost:3000/playlist#' +
       querystring.stringify({
         error: 'state_mismatch'
       }));
@@ -104,7 +104,7 @@ app.get('/callback', function(req, res) {
         });
 
         // we can also pass the token to the browser to make requests from there
-        res.redirect('/#' +
+        res.redirect('http://localhost:3000/playlist#' +
           querystring.stringify({
             access_token: access_token,
             refresh_token: refresh_token
