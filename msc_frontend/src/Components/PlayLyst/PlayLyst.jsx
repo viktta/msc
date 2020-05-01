@@ -6,38 +6,22 @@ const spotifyApi = new SpotifyWebApi();
 class PlayLyst extends Component {
   constructor(props) {
     super(props);
-    const params = this.getHashParams();
-    const token = params.access_token;
-    if (token) {
-      spotifyApi.setAccessToken(token);
-    }
     this.state = {
-      loggedIn: token ? true : false,
       postplaylist: {
         name: '',
         public: false,
       }
     };
   }
-
-
-  getHashParams() {
-    var hashParams = {};
-    var e,
-      r = /([^&;=]+)=?([^&;]*)/g,
-      q = window.location.hash.substring(1);
-    while ((e = r.exec(q))) {
-      hashParams[e[1]] = decodeURIComponent(e[2]);
-    }
-    return hashParams;
-  }
-
- playlistPost(){
-   axios({
-     method: 'post',
-     url: 'https://api.spotify.com/v1/users/aleoria2002/playlists',
-     headers: {'Authorization': 'Bearer'},
-     data: {
+  
+  
+  
+  playlistPost(){
+    axios({
+      method: 'post',
+      url: 'https://api.spotify.com/v1/users/aleoria2002/playlists',
+      headers: {'Authorization': 'Bearer'},
+      data: {
       name: '',
       public: false,
      }
