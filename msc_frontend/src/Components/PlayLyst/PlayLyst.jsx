@@ -6,7 +6,14 @@ const spotifyApi = new SpotifyWebApi();
 class PlayLyst extends Component {
   constructor(props) {
     super(props);
+    const params = this.getHashParams();
+    const token = params.access_token;
+    if (token) {
+      spotifyApi.setAccessToken(token);
+    }
     this.state = {
+      token: token,
+      loggedIn: token ? true : false,
       postplaylist: {
         name: '',
         public: false,
@@ -14,32 +21,42 @@ class PlayLyst extends Component {
     };
   }
   
-  
+  getHashParams() {
+    var hashParams = {};
+    var e,
+    r = /([^&;=]+)=?([^&;]*)/g,
+    q = window.location.hash.substring(1);
+    while ((e = r.exec(q))) {
+      hashParams[e[1]] = decodeURIComponent(e[2]);
+    }
+    return hashParams;
+  }
   
   playlistPost(){
     axios({
       method: 'post',
       url: 'https://api.spotify.com/v1/users/aleoria2002/playlists',
-      headers: {'Authorization': 'Bearer'},
+      headers: {'Authorization': 'Bearer' + token},
       data: {
-      name: '',
-      public: false,
-     }
-   }).then(this.setState({
-     postplaylist: {
        name: '',
-       public: false
-     }
-   }))
-  } 
+       public: false,
+      }
+    }).then(this.setState({
+      postplaylist: {
+        name: '',
+        public: false
+      }
+    }))
+  }
 
   render() {
     return (
       <div className="Main-div">
-        <form onSubmit={() => this.playlistPost()}>
-          <textarea>{this.state.postplaylist.name}</textarea>
-          <button type="submit">Create Playlist</button>
-        </form>
+          {this.state.loggedIn && <form onSubmit={() =>this.playlistPost()}>
+        <input type="text" placeholder="Placylist Name"></input>
+        <button type="submit">create playlist</button>
+          </form>
+    }
       </div>
     );
   }

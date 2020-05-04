@@ -36,7 +36,6 @@ class Dropdown extends Component {
         <div className="Dropdown-content">
           <Router>
             <a href="http://localhost:8888">Login</a>
-            <Link to="/playlist">Playlist</Link>
             <Link to="/player">Player</Link>
             <Link to="/">Home</Link>
           </Router>
