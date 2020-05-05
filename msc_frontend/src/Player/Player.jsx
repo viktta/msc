@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
-import Player_style from "../styles/Player_style/Player_style.css"
+import '../styles/Player_style/Player_style.css'
+
 const spotifyApi = new SpotifyWebApi();
 
 class Player extends Component {
@@ -54,13 +55,13 @@ class Player extends Component {
               <button onClick={() => this.getUser()} className="Get-User-btn">Get User Info</button>
             }
           <div className="Country-inf-div">
-              Country: {this.state.user.country}
+          <h5 className="Country-h5">Country: {this.state.user.country}</h5>
           </div>
           <div className="User-inf-div">
               User Name: {this.state.user.display_name}
           </div>
           <div className="Img-inf-div">
-            <img src={this.state.user.images} className="Img-div"></img>
+            <img src={this.state.user.images} className="Img-div" alt="User Profile"></img>
           </div>
       </div>
     );
