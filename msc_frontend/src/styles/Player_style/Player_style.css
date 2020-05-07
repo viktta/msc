@@ -1,5 +1,30 @@
 .Main-div {
-    padding: 0;
-    margin: 0;
-    left: 700px;
+    
+        display: grid;
+        grid-template-columns: auto auto auto auto auto auto;
+        grid-gap: 10px;
+      
+}
+
+.Img-div {
+    grid-column: 6 / 6;
+    grid-row: 5 / 5;
+}
+
+#Img-id {
+    height: 100px;
+}
+.Name-div {
+    grid-column: 6 / 6;
+    grid-row: 6 / 6;
+}
+
+.Country-div {
+    grid-column: 6 / 6;
+    grid-row: 7 / 7;
+}
+
+#Get-User-btn {
+    grid-column: 6 / 6;
+    grid-row: 8 / 8;
 }

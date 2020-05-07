@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
-import '../styles/Player_style/Player_style.css'
-
+import "../styles/Player_style/Player_style.css";
+import { GrPlayFill } from 'react-icons/gr';
 const spotifyApi = new SpotifyWebApi();
 
 class Player extends Component {
@@ -52,17 +52,20 @@ class Player extends Component {
     return(
       <div className="Main-div">
         {this.state.loggedIn && 
-              <button onClick={() => this.getUser()} className="Get-User-btn">Get User Info</button>
-            }
-          <div className="Country-inf-div">
-          <h5 className="Country-h5">Country: {this.state.user.country}</h5>
-          </div>
-          <div className="User-inf-div">
-              User Name: {this.state.user.display_name}
-          </div>
-          <div className="Img-inf-div">
-            <img src={this.state.user.images} className="Img-div" alt="User Profile"></img>
-          </div>
+          <button onClick={() => this.getUser()} id="Get-User-btn">Get User info</button>
+        }
+        <div className="Country-div">
+            <p id="Country-id">Country: {this.state.user.country}</p>
+        </div>
+        <div className="Name-div">
+            <p id="Name-id">User Name: {this.state.user.display_name}</p>
+        </div>
+        <div className="Img-div">
+          <img src={this.state.user.images} id="Img-id"></img>
+        </div>
+        <div>
+          <button><i><GrPlayFill /></i></button>
+        </div>
       </div>
     );
   }
