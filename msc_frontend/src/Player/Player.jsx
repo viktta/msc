@@ -2,6 +2,13 @@ import React, { Component } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import "../styles/Player_style/Player_style.css";
 import { GrPlayFill } from 'react-icons/gr';
+import { FaPauseCircle } from 'react-icons/fa';
+import { FaArrowAltCircleLeft } from 'react-icons/fa';
+import { FaArrowAltCircleRight } from 'react-icons/fa';
+import { IoIosShuffle } from 'react-icons/io';
+import { BsFillVolumeUpFill } from 'react-icons/bs';
+import { BsFillVolumeDownFill } from 'react-icons/bs';
+import { BsFillVolumeMuteFill } from 'react-icons/bs';
 const spotifyApi = new SpotifyWebApi();
 
 class Player extends Component {
@@ -18,6 +25,11 @@ class Player extends Component {
         country: '',
         display_name: '',
         images: {},
+      },
+      getPlaybackState: {
+        progress_ms: '',
+        name: '',
+        images: ''
       }
     }
   }
@@ -37,12 +49,56 @@ class Player extends Component {
   getUser() {
     spotifyApi.getMe()
     .then((response) => {
-      console.log(response)
       this.setState({
         user: {
           country: response.country,
           display_name: response.display_name,
           images: response.images[0].url,
+        }
+      })
+    })
+  }
+
+  Play() {
+    spotifyApi.play()
+  }
+
+  Pause() {
+    spotifyApi.pause()
+  }
+
+  skipToNext() {
+    spotifyApi.skipToNext()
+  }
+
+  skipToPrevious() {
+    spotifyApi.skipToPrevious()
+  }
+
+  setShuffle() {
+    spotifyApi.setShuffle(true)
+  }
+
+  setVolumeDown() {
+    spotifyApi.setVolume(50)
+  }
+
+  setVolumeUp() {
+    spotifyApi.setVolume(100)
+  }
+
+  setVolumeNone() {
+    spotifyApi.setVolume(0)
+  }
+
+  getPlaybackState() {
+    spotifyApi.getMyCurrentPlaybackState()
+    .then((response) => {
+      this.setState({
+        getPlaybackState: {
+          name: response.item.name,
+          images: response.item.album.images[0].url,
+          progress: response.progres_ms,
         }
       })
     })
@@ -61,10 +117,26 @@ class Player extends Component {
             <p id="Name-id">User Name: {this.state.user.display_name}</p>
         </div>
         <div className="Img-div">
-          <img src={this.state.user.images} id="Img-id"></img>
+          <img src={this.state.user.images} id="Img-id" alt="User Profile "></img>
         </div>
-        <div>
-          <button><i><GrPlayFill /></i></button>
+        <div className="Player-div">
+          <button onClick={() => this.Play()}><i><GrPlayFill /></i></button>
+          <button onClick={() => this.Pause()}><i><FaPauseCircle /></i></button>
+          <button onClick={() => this.skipToPrevious()}><i><FaArrowAltCircleLeft /></i></button>
+          <button onClick={() => this.skipToNext()}><i><FaArrowAltCircleRight /></i></button>
+          <button onClick={() => this.setShuffle()}><i><IoIosShuffle /></i></button>
+          <button onClick={() => this.setVolumeUp()}><i><BsFillVolumeUpFill /></i></button>
+          <button onClick={() => this.setVolumeDown()}><i><BsFillVolumeDownFill /></i></button>
+          <button onClick={() => this.setVolumeNone()}><i><BsFillVolumeMuteFill /></i></button>
+        </div>
+        <div className="Playback-div">
+          <img src={this.state.getPlaybackState.images} id="Img-id-1" alt="album"></img><br /> <br/>
+          <p>
+            name: {this.state.getPlaybackState.name}
+          </p>
+        {this.state.loggedIn && 
+          <button onClick={() => this.getPlaybackState()}>Get currently playing song</button>
+        }
         </div>
       </div>
     );

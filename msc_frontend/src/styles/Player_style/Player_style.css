@@ -28,3 +28,18 @@
     grid-column: 6 / 6;
     grid-row: 8 / 8;
 }
+
+.Player-div {
+    grid-column: 26 / 26;
+    grid-row: 25 / 25;
+}
+
+#Img-id-1 {
+    height: 300px;
+}
+
+
+.Playback-div {
+    grid-column: 26 / 26;
+    grid-row: 20 / 20;
+}

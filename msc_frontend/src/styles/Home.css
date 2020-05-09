@@ -9,11 +9,6 @@
   grid-row: 3 / 7;
 }
 
-.footer {
-  grid-column: 3 / 3;
-  grid-row: 79 / 79;
-}
-
 .header {
   position: relative;
   grid-row: 1 / 1;
